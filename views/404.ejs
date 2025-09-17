@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboad</title>
+    <link rel="stylesheet" href="/css/dashboad.css">
+</head>
+<body>
+     <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <h1>Admin Dashboard</h1>
+                <p>Your path to academic success</p>
+            </div>
+            <div class="user-info">
+                <span class="badge"><%= typeof userRole !== "undefined" ? userRole : "Admin" %></span>
+                <div class="avatar"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Welcome Section -->
+        <section class="welcome-section fade-in">
+            <div class="card card-gradient">
+                <div class="welcome-card">
+                    <div class="welcome-content">
+                        <h2>Welcome back, <%= typeof username !== "undefined" ? username : "Admin" %> </h2>
+                        <p>Complete your interest assessment and discover the perfect stream for your career goals.</p>
+                        <button class="btn btn-primary" onclick="startAssessment()">
+                             Start Assessment
+                        </button>
+                    </div>
+                    <div class="welcome-decoration"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Overview -->
+        <section class="fade-in" style="animation-delay: 0.2s">
+            <h3 class="section-title">Your Learning Progress</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3">
+                <div class="card progress-card">
+                    <div class="card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.875rem; font-weight: 500;">Interest Assessment</span>
+                            <!-- <span style="color: var(--edu-warning);">⭐</span> -->
+                        </div>
+                        <div class="progress-value">75%</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--muted-foreground);">3 of 4 sections completed</p>
+                    </div>
+                </div>
+
+                <div class="card progress-card">
+                    <div class="card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.875rem; font-weight: 500;">Stream Guidance</span>
+                            <!-- <span style="color: var(--edu-success);">📈</span> -->
+                        </div>
+                        <div class="progress-value" style="color: var(--edu-secondary);">3</div>
+                        <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 0.5rem;">Recommended streams</p>
+                        <div style="display: flex; gap: 0.25rem;">
+                            <span class="badge-small">Science</span>
+                            <span class="badge-small">Commerce</span>
+                            <span class="badge-small">Humanities</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card progress-card">
+                    <div class="card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.875rem; font-weight: 500;">Study Materials</span>
+                            <!-- <span style="color: var(--edu-primary);">🕒</span> -->
+                        </div>
+                        <div class="progress-value">24</div>
+                        <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 0.5rem;">Papers accessed</p>
+                        <p style="font-size: 0.75rem; color: var(--muted-foreground);">Last accessed: Math 2023</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Features -->
+        <section class="fade-in" style="animation-delay: 0.4s; margin-top: 2rem;">
+            <h3 class="section-title">Explore Features</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <div class="card feature-card" onclick="openFeature('assessment')">
+                    <div class="card-content">
+                        <!-- <div class="feature-icon icon-primary">🧠</div> -->
+                        <h4 class="card-title">Interest Assessment</h4>
+                        <p class="card-description">Discover your strengths and interests through our comprehensive questionnaire</p>
+                        <div class="feature-meta" style="margin-top: 1rem;">
+                            <span>15-20 minutes</span>
+                            <span class="badge-small">Interactive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card feature-card" onclick="openFeature('guidance')">
+                    <div class="card-content">
+                        <!-- <div class="feature-icon icon-secondary">📈</div> -->
+                        <h4 class="card-title">Stream Guidance</h4>
+                        <p class="card-description">Get personalized recommendations for your future academic path</p>
+                        <div class="feature-meta" style="margin-top: 1rem;">
+                            <span>Personalized</span>
+                            <span class="badge-small">AI-Powered</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card feature-card" onclick="openFeature('papers')">
+                    <div class="card-content">
+                        <!-- <div class="feature-icon icon-success">📄</div> -->
+                        <h4 class="card-title">Personal Assistant</h4>
+                        <p class="card-description">Doubt solver related to future options</p>
+                        <div class="feature-meta" style="margin-top: 1rem;">
+                            <span>Coming soon</span>
+                            <span class="badge-small">Coming soon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card feature-card" onclick="openFeature('materials')">
+                    <div class="card-content">
+                        <!-- <div class="feature-icon icon-warning">📚</div> -->
+                        <h4 class="card-title">Study Materials</h4>
+                        <p class="card-description">Curated resources and notes for all subjects and streams</p>
+                        <div class="feature-meta" style="margin-top: 1rem;">
+                            <span>All Subjects</span>
+                            <span class="badge-small">Updated</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card feature-card" style="opacity: 0.7;">
+                    <div class="card-content">
+                        <!-- <div class="feature-icon" style="background: linear-gradient(135deg, var(--muted), var(--muted-foreground));">⭐</div> -->
+                        <h4 class="card-title">Career Counseling</h4>
+                        <p class="card-description">One-on-one sessions with experienced career counselors</p>
+                        <div class="feature-meta" style="margin-top: 1rem;">
+                            <span>Coming Soon</span>
+                            <span class="badge-small" style="border: 1px solid var(--border); background: transparent;">Coming soon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card feature-card" style="opacity: 0.7;">
+                    <div class="card-content">
+                        <!-- <div class="feature-icon" style="background: linear-gradient(135deg, var(--muted), var(--muted-foreground));">🕒</div> -->
+                        <h4 class="card-title">Progress Tracking</h4>
+                        <p class="card-description">Monitor your learning journey and achievements</p>
+                        <div class="feature-meta" style="margin-top: 1rem;">
+                            <span>Coming Soon</span>
+                            <span class="badge-small" style="border: 1px solid var(--border); background: transparent;">Coming soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof title !== 'undefined' ? title : "StudyHub - Student Portal Signup" %></title>
+    <link rel="stylesheet" href="/css/signup.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="signup-container">
+        <!-- Background overlay -->
+        <div class="background-overlay"></div>
+        
+        <!-- Floating elements -->
+        <div class="floating-element floating-1">
+            <i class="fas fa-book-open"></i>
+        </div>
+        <div class="floating-element floating-2">
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="floating-element floating-3">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        
+        <!-- Main content -->
+        <div class="signup-card-wrapper">
+            <div class="signup-card">
+                <div class="card-content">
+                    <!-- Header -->
+                    <div class="header">
+                        <div class="logo-container">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h1 class="title">Class 12 student</h1>
+                        <!-- <p class="subtitle">Create your student account and start your learning journey!</p> -->
+                    </div>
+
+                    <!-- Form -->
+                    <form id="signupForm" class="signup-form" method="POST" action="/register">
+                        <!-- Grade Selection -->
+                        <!-- <div class="form-group">
+                            <label for="grade" class="form-label">Select Your Grade</label>
+                            <div class="select-wrapper">
+                                <select id="grade" name="grade" class="form-select" required>
+                                    <option value="">Choose your current grade</option>
+                                    <% if (typeof grades !== 'undefined' && grades.length) { %>
+                                        <% grades.forEach(function(grade) { %>
+                                            <option value="<%= grade %>"><%= grade %></option>
+                                        <% }); %>
+                                    <% } else { %>
+                                        <option value="10th">10th Grade</option>
+                                        <option value="12th">12th Grade</option>
+                                    <% } %>
+                                </select>
+                                <i class="fas fa-chevron-down select-icon"></i>
+                            </div>
+                        </div> -->
+
+                        <!-- Username -->
+                        <div class="form-group">
+                            <label for="username" class="form-label">Username</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user input-icon"></i>
+                                <input 
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    class="form-input"
+                                    placeholder="Enter your username"
+                                    value="<%= typeof username !== 'undefined' ? username : '' %>"
+                                    required
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input 
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    class="form-input"
+                                    placeholder="Enter your password"
+                                    minlength="6"
+                                    required
+                                >
+                            </div>
+                            <!-- <p class="password-hint">Password must be at least 6 characters long</p> -->
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span class="btn-text">Login</span>
+                            <div class="btn-loader" style="display: none;">
+                                <div class="spinner"></div>
+                                <a href="/login/admin/Dashboard">Logging in...</a>
+                            </div>
+                        </button>
+                    </form>
+
+                    <!-- Footer -->
+                    <!-- <div class="footer">
+                        <p class="footer-text">
+                            Already have an account? 
+                            <a href="/login" class="signin-link">Sign in here</a>
+                        </p>
+                    </div> -->
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <% if (typeof toast !== 'undefined' && toast) { %>
+    <div id="toast" class="toast show">
+        <div class="toast-content">
+            <i class="toast-icon <%= toast.icon %>"></i>
+            <div class="toast-text">
+                <div class="toast-title"><%= toast.title %></div>
+                <div class="toast-description"><%= toast.message %></div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+
+    <script src="/js/signup-script.js"></script>
+</body>
+</html>
