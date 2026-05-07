@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-flask logo-icon"></i>
+                <div>
+                    <h1>Streamwise Lab</h1>
+                    <p>Your path to academic success</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <span class="badge"><%= typeof userRole !== 'undefined' ? userRole.toUpperCase() : 'STUDENT' %></span>
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <a href="/logout" class="logout-btn" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Welcome Banner -->
+        <section class="welcome-section fade-in">
+            <div class="welcome-card">
+                <div class="welcome-text">
+                    <h2>Welcome back, <span class="highlight"><%= typeof username !== 'undefined' ? username : 'Student' %></span>! 👋</h2>
+                    <p>Complete your skill assessment to get personalized stream guidance and find government colleges near you.</p>
+                    <div class="welcome-actions">
+                        <a href="/assessment" class="btn btn-primary">
+                            <i class="fas fa-brain"></i> Start Assessment
+                        </a>
+                        <a href="/colleges" class="btn btn-outline">
+                            <i class="fas fa-university"></i> Find Colleges
+                        </a>
+                    </div>
+                </div>
+                <div class="welcome-graphic">
+                    <div class="graphic-circle c1"></div>
+                    <div class="graphic-circle c2"></div>
+                    <div class="graphic-icon"><i class="fas fa-graduation-cap"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Row -->
+        <section class="stats-section fade-in" style="animation-delay:0.15s">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon icon-blue"><i class="fas fa-tasks"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value">75%</div>
+                        <div class="stat-label">Assessment Progress</div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-green"><i class="fas fa-university"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value">24+</div>
+                        <div class="stat-label">Colleges Matched</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-purple"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Streams Recommended</div>
+                        <div class="stream-tags">
+                            <span class="tag">Science</span>
+                            <span class="tag">Commerce</span>
+                            <span class="tag">Arts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Cards -->
+        <section class="features-section fade-in" style="animation-delay:0.3s">
+            <h3 class="section-title">Explore Features</h3>
+            <div class="features-grid">
+
+                <a href="/assessment" class="feature-card card-blue">
+                    <div class="feature-card-icon"><i class="fas fa-brain"></i></div>
+                    <div class="feature-card-body">
+                        <h4>Skill Assessment</h4>
+                        <p>Answer questions based on your interests, strengths, and location to get stream recommendations</p>
+                        <div class="feature-meta">
+                            <span><i class="fas fa-clock"></i> 10–15 min</span>
+                            <span class="tag-sm">Interactive</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-arrow-right card-arrow"></i>
+                </a>
+
+                <a href="/colleges" class="feature-card card-green">
+                    <div class="feature-card-icon"><i class="fas fa-university"></i></div>
+                    <div class="feature-card-body">
+                        <h4>Govt College Finder</h4>
+                        <p>Find government colleges near your location filtered by stream, fees, and ranking</p>
+                        <div class="feature-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Location-based</span>
+                            <span class="tag-sm">Free</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-arrow-right card-arrow"></i>
+                </a>
+
+                <a href="#" class="feature-card card-orange">
+                    <div class="feature-card-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="feature-card-body">
+                        <h4>Stream Guidance</h4>
+                        <p>Get AI-powered, personalised recommendations for your future academic path</p>
+                        <div class="feature-meta">
+                            <span><i class="fas fa-robot"></i> AI-Powered</span>
+                            <span class="tag-sm">Personalised</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-arrow-right card-arrow"></i>
+                </a>
+
+                <a href="#" class="feature-card card-teal coming-soon">
+                    <div class="coming-soon-badge">Coming Soon</div>
+                    <div class="feature-card-icon"><i class="fas fa-robot"></i></div>
+                    <div class="feature-card-body">
+                        <h4>Personal Assistant</h4>
+                        <p>AI chatbot to answer your doubts about future streams, colleges and career paths</p>
+                        <div class="feature-meta">
+                            <span><i class="fas fa-comments"></i> Chat-based</span>
+                            <span class="tag-sm">Beta</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-arrow-right card-arrow"></i>
+                </a>
+
+                <a href="#" class="feature-card card-indigo coming-soon">
+                    <div class="coming-soon-badge">Coming Soon</div>
+                    <div class="feature-card-icon"><i class="fas fa-book-open"></i></div>
+                    <div class="feature-card-body">
+                        <h4>Study Materials</h4>
+                        <p>Curated notes, papers and resources for all subjects and streams</p>
+                        <div class="feature-meta">
+                            <span><i class="fas fa-layer-group"></i> All Subjects</span>
+                            <span class="tag-sm">Updated</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-arrow-right card-arrow"></i>
+                </a>
+
+                <a href="#" class="feature-card card-pink coming-soon">
+                    <div class="coming-soon-badge">Coming Soon</div>
+                    <div class="feature-card-icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="feature-card-body">
+                        <h4>Career Counseling</h4>
+                        <p>One-on-one sessions with experienced career counselors</p>
+                        <div class="feature-meta">
+                            <span><i class="fas fa-calendar"></i> Book a session</span>
+                            <span class="tag-sm">Expert</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-arrow-right card-arrow"></i>
+                </a>
+
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Animate progress bars on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.progress-fill').forEach(el => {
+                el.style.transition = 'width 1s ease';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -17,20 +17,18 @@ app.use(express.urlencoded({ extended: true }));
 
 // Session configuration
 app.use(session({
-    secret: 'your-secret-key',
+    secret: 'streamwise-secret-key-2024',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false } // Set to true in production with HTTPS
+    cookie: { secure: false }
 }));
-
-app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/', authRoutes);
 
-// Error handling
+// 404 Error handling
 app.use((req, res) => {
-    res.status(404).render('404', { 
+    res.status(404).render('404', {
         title: '404 - Page Not Found',
         description: 'The page you are looking for does not exist'
     });

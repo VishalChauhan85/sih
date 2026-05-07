@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/assessment.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="/dashboard" class="back-btn"><i class="fas fa-arrow-left"></i> Dashboard</a>
+            <div class="logo">
+                <i class="fas fa-flask"></i> Streamwise Lab
+            </div>
+            <div class="step-indicator">
+                <span class="step active" id="step-dot-1">1</span>
+                <span class="step-line"></span>
+                <span class="step" id="step-dot-2">2</span>
+                <span class="step-line"></span>
+                <span class="step" id="step-dot-3">3</span>
+                <span class="step-line"></span>
+                <span class="step" id="step-dot-4">4</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="assessment-container">
+        <form id="assessmentForm" method="POST" action="/assessment/submit">
+
+            <!-- Step 1: Personal Info & Location -->
+            <div class="step-panel active" id="step-1">
+                <div class="step-header">
+                    <div class="step-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h2>Your Location & Details</h2>
+                    <p>Help us find the best government colleges near you</p>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label>Your Name</label>
+                        <div class="input-wrap">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="studentName" placeholder="Enter your full name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>State</label>
+                        <div class="input-wrap">
+                            <i class="fas fa-map"></i>
+                            <select name="state" id="stateSelect" required>
+                                <option value="">Select your state</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>City / District</label>
+                        <div class="input-wrap">
+                            <i class="fas fa-city"></i>
+                            <input type="text" name="location" placeholder="Enter your city or district" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Current Class</label>
+                        <div class="input-wrap">
+                            <i class="fas fa-graduation-cap"></i>
+                            <select name="currentClass" required>
+                                <option value="">Select class</option>
+                                <option value="10">Class 10</option>
+                                <option value="12">Class 12</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <div class="input-wrap">
+                            <i class="fas fa-id-card"></i>
+                            <select name="category" required>
+                                <option value="">Select category</option>
+                                <option value="General">General</option>
+                                <option value="OBC">OBC</option>
+                                <option value="SC">SC</option>
+                                <option value="ST">ST</option>
+                                <option value="EWS">EWS</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-actions">
+                    <div></div>
+                    <button type="button" class="btn-next" onclick="nextStep(2)">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: Subject Skills -->
+            <div class="step-panel" id="step-2">
+                <div class="step-header">
+                    <div class="step-icon"><i class="fas fa-book"></i></div>
+                    <h2>Subject-wise Skill Ratings</h2>
+                    <p>Rate your comfort level in each subject (1 = Low, 5 = High)</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <i class="fas fa-square-root-alt"></i> Mathematics
+                        </div>
+                        <div class="star-rating" data-name="math">
+                            <span class="star" data-val="1">★</span>
+                            <span class="star" data-val="2">★</span>
+                            <span class="star" data-val="3">★</span>
+                            <span class="star" data-val="4">★</span>
+                            <span class="star" data-val="5">★</span>
+                        </div>
+                        <input type="hidden" name="math" id="math-val" value="0">
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <i class="fas fa-atom"></i> Science / Physics
+                        </div>
+                        <div class="star-rating" data-name="science">
+                            <span class="star" data-val="1">★</span>
+                            <span class="star" data-val="2">★</span>
+                            <span class="star" data-val="3">★</span>
+                            <span class="star" data-val="4">★</span>
+                            <span class="star" data-val="5">★</span>
+                        </div>
+                        <input type="hidden" name="science" id="science-val" value="0">
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <i class="fas fa-flask"></i> Chemistry / Biology
+                        </div>
+                        <div class="star-rating" data-name="chemistry">
+                            <span class="star" data-val="1">★</span>
+                            <span class="star" data-val="2">★</span>
+                            <span class="star" data-val="3">★</span>
+                            <span class="star" data-val="4">★</span>
+                            <span class="star" data-val="5">★</span>
+                        </div>
+                        <input type="hidden" name="chemistry" id="chemistry-val" value="0">
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <i class="fas fa-rupee-sign"></i> Commerce / Accounts
+                        </div>
+                        <div class="star-rating" data-name="commerce">
+                            <span class="star" data-val="1">★</span>
+                            <span class="star" data-val="2">★</span>
+                            <span class="star" data-val="3">★</span>
+                            <span class="star" data-val="4">★</span>
+                            <span class="star" data-val="5">★</span>
+                        </div>
+                        <input type="hidden" name="commerce" id="commerce-val" value="0">
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <i class="fas fa-pen-nib"></i> Languages / Literature
+                        </div>
+                        <div class="star-rating" data-name="languages">
+                            <span class="star" data-val="1">★</span>
+                            <span class="star" data-val="2">★</span>
+                            <span class="star" data-val="3">★</span>
+                            <span class="star" data-val="4">★</span>
+                            <span class="star" data-val="5">★</span>
+                        </div>
+                        <input type="hidden" name="languages" id="languages-val" value="0">
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <i class="fas fa-paint-brush"></i> Arts / Drawing
+                        </div>
+                        <div class="star-rating" data-name="arts">
+                            <span class="star" data-val="1">★</span>
+                            <span class="star" data-val="2">★</span>
+                            <span class="star" data-val="3">★</span>
+                            <span class="star" data-val="4">★</span>
+                            <span class="star" data-val="5">★</span>
+                        </div>
+                        <input type="hidden" name="arts" id="arts-val" value="0">
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <i class="fas fa-laptop-code"></i> Computers / Technology
+                        </div>
+                        <div class="star-rating" data-name="computers">
+                            <span class="star" data-val="1">★</span>
+                            <span class="star" data-val="2">★</span>
+                            <span class="star" data-val="3">★</span>
+                            <span class="star" data-val="4">★</span>
+                            <span class="star" data-val="5">★</span>
+                        </div>
+                        <input type="hidden" name="computers" id="computers-val" value="0">
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label">
+                            <i class="fas fa-globe"></i> Social Science / History
+                        </div>
+                        <div class="star-rating" data-name="social">
+                            <span class="star" data-val="1">★</span>
+                            <span class="star" data-val="2">★</span>
+                            <span class="star" data-val="3">★</span>
+                            <span class="star" data-val="4">★</span>
+                            <span class="star" data-val="5">★</span>
+                        </div>
+                        <input type="hidden" name="social" id="social-val" value="0">
+                    </div>
+                </div>
+                <div class="step-actions">
+                    <button type="button" class="btn-prev" onclick="prevStep(1)">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <button type="button" class="btn-next" onclick="nextStep(3)">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Interests & Career -->
+            <div class="step-panel" id="step-3">
+                <div class="step-header">
+                    <div class="step-icon"><i class="fas fa-heart"></i></div>
+                    <h2>Your Interests & Goals</h2>
+                    <p>Select all that apply to you</p>
+                </div>
+
+                <div class="interest-section">
+                    <h4>What activities do you enjoy?</h4>
+                    <div class="interest-grid">
+                        <label class="interest-chip">
+                            <input type="checkbox" name="interests" value="problem_solving">
+                            <span><i class="fas fa-puzzle-piece"></i> Problem Solving</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="checkbox" name="interests" value="creativity">
+                            <span><i class="fas fa-paint-brush"></i> Creative Work</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="checkbox" name="interests" value="helping_people">
+                            <span><i class="fas fa-hands-helping"></i> Helping People</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="checkbox" name="interests" value="business">
+                            <span><i class="fas fa-briefcase"></i> Business / Trading</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="checkbox" name="interests" value="technology">
+                            <span><i class="fas fa-microchip"></i> Technology</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="checkbox" name="interests" value="research">
+                            <span><i class="fas fa-microscope"></i> Research</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="checkbox" name="interests" value="sports">
+                            <span><i class="fas fa-running"></i> Sports</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="checkbox" name="interests" value="writing">
+                            <span><i class="fas fa-feather"></i> Writing</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="checkbox" name="interests" value="teaching">
+                            <span><i class="fas fa-chalkboard-teacher"></i> Teaching</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="checkbox" name="interests" value="law">
+                            <span><i class="fas fa-gavel"></i> Law / Justice</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="checkbox" name="interests" value="nature">
+                            <span><i class="fas fa-leaf"></i> Nature / Environment</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="checkbox" name="interests" value="music_dance">
+                            <span><i class="fas fa-music"></i> Music / Dance</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="interest-section" style="margin-top:1.5rem;">
+                    <h4>What is your career goal area?</h4>
+                    <div class="interest-grid">
+                        <label class="interest-chip">
+                            <input type="radio" name="careerGoal" value="engineering">
+                            <span><i class="fas fa-cog"></i> Engineering</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="radio" name="careerGoal" value="medical">
+                            <span><i class="fas fa-stethoscope"></i> Medical / Health</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="radio" name="careerGoal" value="law">
+                            <span><i class="fas fa-balance-scale"></i> Law</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="radio" name="careerGoal" value="management">
+                            <span><i class="fas fa-chart-pie"></i> Management / MBA</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="radio" name="careerGoal" value="arts_design">
+                            <span><i class="fas fa-palette"></i> Arts / Design</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="radio" name="careerGoal" value="government">
+                            <span><i class="fas fa-landmark"></i> Govt / Civil Services</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="radio" name="careerGoal" value="defence">
+                            <span><i class="fas fa-shield-alt"></i> Defence / Army</span>
+                        </label>
+                        <label class="interest-chip">
+                            <input type="radio" name="careerGoal" value="not_sure">
+                            <span><i class="fas fa-question"></i> Not Sure Yet</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="step-actions">
+                    <button type="button" class="btn-prev" onclick="prevStep(2)">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <button type="button" class="btn-next" onclick="nextStep(4)">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 4: Review & Submit -->
+            <div class="step-panel" id="step-4">
+                <div class="step-header">
+                    <div class="step-icon"><i class="fas fa-check-circle"></i></div>
+                    <h2>Review & Submit</h2>
+                    <p>Check your details before finding your best colleges</p>
+                </div>
+
+                <div class="review-box" id="reviewBox">
+                    <!-- Filled by JS -->
+                </div>
+
+                <div class="step-actions">
+                    <button type="button" class="btn-prev" onclick="prevStep(3)">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-university"></i> Find My Colleges
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </main>
+
+    <script src="/js/assessment.js"></script>
+</body>
+</html>
